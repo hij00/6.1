@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scroll2</title>
+    <!-- 스크롤바 기준으로 얼마만큼 떨어졌는지 -->
+    <!-- 선택자는 window 사용
+    window.addEventListenter('scroll', 함수) -->
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .wrap{
+            height: 300vh;
+        }
+        header{
+            width: 100%;
+            height: 80px;
+            background-color: lightgray;
+            position: fixed;
+            top: 0;
+            left: 0;
+            font-size: 50px;
+            text-align: center;
+        }
+        .container{
+            width: 1000px;
+            height: 500px;
+            background-color: lightcoral;
+            margin: 200px auto;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: lightblue;
+            margin: 0 auto;
+            transition-duration: 1s;
+        }
+        /* --------------- */
+        .act{
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .round{
+            border-radius: 50%;
+            transform: scale(2.5);
+        }
+    </style>
+
+</head>
+<body>
+    
+    <div class="wrap">
+
+        <header></header>
+
+        <div class="container"></div>
+
+        <div class="box"></div>
+
+    </div>
+    <!-- ----------------- -->
+
+    <script>
+
+        (function(){
+
+            // scroll이벤트 작업순서
+            // 스크롤 이벤트적용
+            // pageYOffset으로 스크롤값 가져오기
+            // 이벤트 적용할 엘리먼트 파악 및 선택
+            // 이벤트 적용
+
+            const headE = document.querySelector('header')
+            const conEl = document.querySelector('.container')
+            const boxEl = document.querySelector('.box')
+
+            const handlescrollHeader = () => {
+                const scr = window.pageYOffset;
+                 headE.innerHTML = scr;
+
+                if(scr > 300){
+                    headE.classList.add('act')
+                }else{
+                    headE.classList.remove('act')
+                }               
+            }
+
+            const handlescrollBox = () => {
+                // 컨데이너가 탑에 도달했을때, 박스가 둥글게 변경
+                // 실시간으로 값을 가져오는 건 getbounding
+                // console.log(
+                //     conEl.getBoundingClientRect().top
+                // )
+                const conTop = conEl.getBoundingClientRect().top
+                if(conTop < 0){
+                    boxEl.classList.add('round')
+                }else{
+                    boxEl.classList.remove('round')
+                }
+            }
+
+            window.addEventListener('scroll', handlescrollHeader)
+            window.addEventListener('scroll', handlescrollBox)
+
+        })();
+
+    </script>
+</body>
+</html>

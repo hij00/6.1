@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scroll</title>
+    <!-- 스크롤바 기준으로 얼마만큼 떨어졌는지 -->
+    <!-- 선택자는 window 사용
+    window.addEventListenter('scroll', 함수) -->
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .wrap{
+            height: 300vh;
+        }
+        header{
+            width: 100%;
+            height: 80px;
+            background-color: lightgray;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        .container{
+            width: 1000px;
+            height: 500px;
+            background-color: lightblue;
+            margin: 200px auto;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <div class="wrap">
+
+        <header></header>
+
+        <div class="container"></div>
+
+    </div>
+    <!-- ----------------- -->
+
+    <script>
+
+        (function(){
+
+            const conEl = document.querySelector('.container')
+
+            const handscroll = () => {
+                // console.log('scroll event')
+                // 클릭은 일회성이지만 스크롤은 할때마다 함수 호출됨
+
+                // console.log(window.pageYOffset)
+                // 윈도우 전역객체가 가지고 있는 스크롤값을 px단위로 가져올 수 있음
+                // pageYOffset으로 window생략가능
+                // 엘리먼트에도 이벤트 적용가능
+                // console.log(pageYOffset)
+
+                // 스크롤을 내렸을때 특정 위치에서 엘리먼트가 작동하게
+                // 변수로 만들어서 불러오기 편하게
+                const sct = window.pageYOffset
+                // console.log(sct)
+
+                // conEl.offsetTop
+                // console.log(conEl.offsetTop)
+                // offsetTop : 한번만 작동함, 고정값
+                // 엘리먼트의 처음 top 위치를 가져옴
+                // 첫 위치만 가져오기 때문에 스크롤이 변경되도 값이 계속 바뀌지 않음(고정값)
+                // console.log(conEl.offsetLeft)
+                // offsetLeft는 엘리먼트의 왼쪽 위치값을 가져옴
+                // top, left만 있음
+
+                // console.log(conEl.offsetHeight)
+                // 퍼센트로 있는 값을 px로 알수있음
+                // 엘리먼트의 가로값, 높이값을 px단위로 가져옴
+                // console.log(conEl.offsetWidth)
+
+                // console.log(
+                //     conEl.getBoundingClientRect().top
+                // )
+                // getBoundingClientRect만 넣으면 엘리먼트의 속성, 크기, 위치값을 가져옴
+                // top값만 가져오고 싶을땐
+                // 선택자.getBoundingClientRect().(속성-top)
+
+                console.log(window.innerHeight)
+                // 브라우저의 높이, 가로값을 px단위로 가져옴
+                // 반응형 할땐 MediaQuery
+            }
+
+            window.addEventListener('scroll', handscroll)
+            // 스크롤을 했을때 이벤트 발생
+
+        })();//end
+
+    </script>
+</body>
+</html>
