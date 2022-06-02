@@ -15,8 +15,13 @@
         const useScroll = wrapEl.offsetHeight - window.innerHeight
         // 자식의 픽셀을 퍼센트로 가져오는 법 => 자식 / 부모 * 100
         const per = scr / useScroll *100
-        console.log(per)
+        // console.log(per)
         barEl.style.width = per + '%'
+        console.log(scr)
+        console.log(wrapEl.offsetHeight)
+        console.log(window.innerHeight)
+      
+        console.log(useScroll)
 
         // 사용할 스크롤값 : 문서의 높이값 - 브라우저의 높이값
         // (선택자.offsetHeight - window.innerHeight)
